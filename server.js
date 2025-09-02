@@ -46,6 +46,16 @@ function createProxy(serviceUrl) {
   };
 }
 
+// Health check endpoint
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'healthy', service: 'api-gateway' });
+});
+
+// Root endpoint
+app.get('/', (req, res) => {
+  res.status(200).json({ message: 'API Gateway is running', version: '1.0.0' });
+});
+
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`API Gateway running on port ${PORT}`);
 });
