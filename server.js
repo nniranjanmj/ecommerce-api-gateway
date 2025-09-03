@@ -21,6 +21,11 @@ const SERVICES = {
   inventory: process.env.INVENTORY_SERVICE_URL || 'http://inventory-service:3005'
 };
 
+// API root endpoint
+app.get('/api', (req, res) => {
+  res.json({ message: 'E-commerce API Gateway', version: '1.0.0', services: ['users', 'products', 'orders', 'payments', 'inventory'] });
+});
+
 // Gateway routes
 app.use('/api/users', createProxy(SERVICES.user));
 app.use('/api/products', createProxy(SERVICES.product));
